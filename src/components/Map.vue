@@ -1,37 +1,55 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
+  <div class="hero">
+    <div>
+      <h1 class="display-3">{{ msg }}</h1>
+      <p class="lead">This is the page of our Geographic Information
+        Systems(GIS) app</p>
+      <p class="lead">A geographic information system (GIS) is a
+        computer-based system used for collecting, storing, manipulating,</p>
+      <p>and analyzing spatial data i.e data that can be referenced to a
+        particular location on earth.</p>
+
+<!--      <div id="mapid">-->
+<!--        <script src="../middleware/leafletmap.js"></script>-->
+<!--      </div>-->
+
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'map',
-  data () {
-    return {
-      msg: 'Welcome to my map'
+  export default {
+    name: 'map',
+    data () {
+      return {
+        msg: 'Welcome to GeoMap'
+      }
     }
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-h1, h2 {
-  font-weight: normal;
-}
+  h1, h2 {
+    font-weight: normal;
+  }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
 
-a {
-  color: #35495E;
-}
+  a {
+    color: #35495E;
+  }
+
+  /*#mapid {*/
+  /*  height: 180px;*/
+  /*}*/
+
 </style>
