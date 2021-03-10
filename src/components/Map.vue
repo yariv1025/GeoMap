@@ -8,11 +8,6 @@
         computer-based system used for collecting, storing, manipulating,</p>
       <p>and analyzing spatial data i.e data that can be referenced to a
         particular location on earth.</p>
-
-<!--      <div id="mapid">-->
-<!--        <script src="../middleware/leafletmap.js"></script>-->
-<!--      </div>-->
-
     </div>
   </div>
 </template>
@@ -47,9 +42,5 @@
   a {
     color: #35495E;
   }
-
-  /*#mapid {*/
-  /*  height: 180px;*/
-  /*}*/
 
 </style>
