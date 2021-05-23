@@ -1,18 +1,29 @@
 <template>
   <div id="app">
-    <header>
-      <span>GIS Map</span>
-    </header>
+    <topbar></topbar>
+
     <main>
-      <img src="../static/img/icons/geomaplogo.png" alt="Vue.js PWA">
+<!--      <img src="../static/img/icons/geomaplogo.png" alt="Vue.js PWA">-->
       <router-view></router-view>
     </main>
+
+<!--    <foot></foot>-->
   </div>
 </template>
 
 <script>
+  import Topbar from '@/components/Topbar'
+  import Foot from '@/components/Foot'
+  import NavigationDrawer from '@/components/NavigationDrawer'
+
   export default {
-    name: 'app'
+    name: 'app',
+
+    components: {
+      'topbar': Topbar,
+      'foot': Foot,
+      'navigation-drawer': NavigationDrawer
+    }
   }
 </script>
 
@@ -33,22 +44,4 @@
     margin-top: 40px;
   }
 
-  header {
-    margin: 0;
-    height: 56px;
-    padding: 0 16px 0 24px;
-    background-color: #35495E;
-    color: #ffffff;
-  }
-
-  header span {
-    display: block;
-    position: relative;
-    font-size: 20px;
-    line-height: 1;
-    letter-spacing: .02em;
-    font-weight: 400;
-    box-sizing: border-box;
-    padding-top: 16px;
-  }
 </style>
