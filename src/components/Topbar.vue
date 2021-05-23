@@ -1,35 +1,22 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <b-navbar toggleable type="dark" variant="dark">
+    <b-navbar-brand href="/">{{projectName}}</b-navbar-brand>
 
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">{{projectName}}</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false"
-              aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <b-navbar-toggle target="navbar-toggle-collapse">
+      <template #default="{ expanded }">
+        <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>
+        <b-icon v-else icon="chevron-bar-down"></b-icon>
+      </template>
+    </b-navbar-toggle>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
-            style="--bs-scroll-height: 100px;">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#/maps">Maps</a>
-          </li>
-        </ul>
-      </div>
-
-<!--      <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--        <form class="d-flex">-->
-<!--          <input class="form-control me-2" type="search"-->
-<!--                 placeholder="To Active Search"-->
-<!--                 aria-label="Search">-->
-<!--          <button class="btn btn-outline-success" type="submit">Search</button>-->
-<!--        </form>-->
-<!--      </div>-->
-    </div>
-  </nav>
-
+    <b-collapse id="navbar-toggle-collapse" is-nav>
+      <b-navbar-nav class="ml-auto">
+        <b-nav-item href="#/maps">Maps</b-nav-item>
+        <b-nav-item href="#/about">About me</b-nav-item>
+<!--        <b-nav-item href="#" disabled>Disabled</b-nav-item>-->
+      </b-navbar-nav>
+    </b-collapse>
+  </b-navbar>
 </template>
 
 <script>
@@ -44,4 +31,10 @@
 
   }
 </script>
+
+<style>
+  .navbar {
+    display: flex;
+    }
+</style>
 
