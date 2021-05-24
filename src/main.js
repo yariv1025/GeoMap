@@ -19,6 +19,9 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  data: () => ({
+    isActive: true,
+  }),
   // template: '<App/>',
   render: h => h(App)
 })
