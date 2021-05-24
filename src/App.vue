@@ -21,8 +21,8 @@
 
     components: {
       'topbar': Topbar,
-      'foot': Foot,
-      'navigation-drawer': NavigationDrawer
+      // 'foot': Foot,
+      // 'navigation-drawer': NavigationDrawer
     }
   }
 </script>
