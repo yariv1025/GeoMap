@@ -1,46 +1,55 @@
 <template>
   <div class="hero">
-    <div class="row">
+    <div class="row"
+         :style="{'background-image':'url(https://st2.depositphotos.com/4559651/6824/v/950/depositphotos_68247887-stock-illustration-seamless-city-map-pattern.jpg'}">
 
       <div class="col-sm">
-        <div id="marker">
-          <input type="text"
-                 name="lng-lnt"
-                 id="lng-lnt"
-                 ref="marker"
-                 placeholder="[[Latitude,Longitude]]" required >
 
-          <div class = "my-cta-button"
-               type="submit"
-               value="Send"
-               v-on:click = "addMarker">
-            Upload markers
+        <div class="row">
+          <!--          Upload file-->
+          <input type="file" id="real-file" hidden="hidden"/>
+          <span id="custom-text"><h4> --Please choose JSON file:</h4></span>
+          <button type="button" id="custom-button" v-on:click="loadJSONFile">
+            Upload JSON file
+          </button>
+        </div>
+
+        <div class="row">
+          <div id="marker">
+            <input type="text"
+                   name="lng-lnt"
+                   id="lng-lnt"
+                   ref="marker"
+                   placeholder="[[Latitude,Longitude]]" required>
+
+            <div class="my-cta-button"
+                 type="submit"
+                 value="Send"
+                 v-on:click="addMarker">
+              Upload markers
+            </div>
           </div>
 
-<!--          Upload file-->
-          <input type="file" id="real-file" hidden="hidden" />
-          <button type="button" id="custom-button" v-on:click = "loadJSONFile">Upload JSON file</button>
-          <span id="custom-text">No file chosen, yet.</span>
 
-<!--          <button type="submit"-->
-<!--                  value="Send"-->
-<!--                  class="btn btn-secondary btn-lg"-->
-<!--                  v-on:click = "addMarker">-->
-<!--            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up" viewBox="0 0 16 16">-->
-<!--              <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1h-2z"/>-->
-<!--              <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 1.707V10.5a.5.5 0 0 1-1 0V1.707L5.354 3.854a.5.5 0 1 1-.708-.708l3-3z"/>-->
-<!--            </svg>-->
-<!--            Upload marker-->
-<!--          </button>-->
+<!--                    <button type="submit"-->
+<!--                            value="Send"-->
+<!--                            class="btn btn-secondary btn-lg"-->
+<!--                            v-on:click = "addMarker">-->
+<!--                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up" viewBox="0 0 16 16">-->
+<!--                        <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1h-2z"/>-->
+<!--                        <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 1.707V10.5a.5.5 0 0 1-1 0V1.707L5.354 3.854a.5.5 0 1 1-.708-.708l3-3z"/>-->
+<!--                      </svg>-->
+<!--                      Upload marker-->
+<!--                    </button>-->
 
         </div>
       </div>
 
       <div class="col-sm">
         <v-container class="d-flex justify-center mb-6" flat tile>
-        <div id="mapid" class="d-flex justify-center mb-6"
-             style="height: 700px; width: 4000px;">
-        </div>
+          <div id="mapid" class="d-flex justify-center mb-6"
+               style="height: 600px; width: 4000px;">
+          </div>
         </v-container>
       </div>
 
@@ -54,7 +63,7 @@
   import '@geoman-io/leaflet-geoman-free'
   import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css'
   import 'leaflet-measure'
-  import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch'
+  import {GeoSearchControl, OpenStreetMapProvider} from 'leaflet-geosearch'
   import {LMarker} from "vue2-leaflet";
 
   export default {
@@ -233,8 +242,8 @@
         L.control.scale({position: 'bottomright'}).addTo(mymap)
       },
 
-      findCurrentLatLng(mymap){
-        navigator.geolocation.getCurrentPosition(function(location) {
+      findCurrentLatLng(mymap) {
+        navigator.geolocation.getCurrentPosition(function (location) {
           let latlng = new L.LatLng(location.coords.latitude,
             location.coords.longitude)
           let marker =
@@ -260,8 +269,8 @@
             icon: new L.Icon.Default(),
             draggable: false,
           },
-          popupFormat: ({ query, result }) => result.label, // optional: function    - default returns result label,
-          resultFormat: ({ result }) => result.label, // optional: function    - default returns result label
+          popupFormat: ({query, result}) => result.label, // optional: function    - default returns result label,
+          resultFormat: ({result}) => result.label, // optional: function    - default returns result label
           maxMarkers: 1, // optional: number      - default 1
           retainZoomLevel: false, // optional: true|false  - default false
           animateZoom: true, // optional: true|false  - default true
@@ -269,11 +278,10 @@
           searchLabel: 'Enter address', // optional: string      - default 'Enter address'
           keepResult: false, // optional: true|false  - default false
           updateMap: true, // optional: true|false  - default true
-      })
+        })
 
         mymap.addControl(searchControl)
       },
-
 
 
       // adds specific marker to our map
@@ -285,8 +293,7 @@
 
         if (!markers) {
           console.log(`markers list is: ${markers}`)
-        }
-        else {
+        } else {
           markers.forEach((marker, index) => {
             L.marker(marker).addTo(mymap)
             console.log(`A new marker added: ${marker}`);
@@ -300,16 +307,15 @@
         const customBtn = document.getElementById("custom-button")
         const customTxt = document.getElementById("custom-text")
 
-        customBtn.addEventListener("click", function() {
+        customBtn.addEventListener("click", function () {
           realFileBtn.click()
         })
 
-        realFileBtn.addEventListener("change", function() {
+        realFileBtn.addEventListener("change", function () {
           if (realFileBtn.value) {
             customTxt.innerHTML = realFileBtn.value.match(
               /[\/\\]([\w\d\s\.\-\(\)]+)$/)[1]
-          }
-          else {
+          } else {
             customTxt.innerHTML = "No file chosen, yet."
           }
         })
@@ -365,26 +371,16 @@
     margin: 0;
   }
 
-  .my-cta-button, #custom-button{
-    background:    #000000;
-    background:    linear-gradient(#000000, #565758);
+  .my-cta-button, #custom-button {
+    background: #000000;
+    background: linear-gradient(#000000, #565758);
     border-radius: 1000px;
-    padding:       10px 35px;
-    color:         #ffffff;
-    display:       inline-block;
-    font:          normal bold 20px/1 "Calibri", sans-serif;
-    text-align:    center;
+    padding: 10px 35px;
+    color: #ffffff;
+    display: inline-block;
+    font: normal bold 20px/1 "Calibri", sans-serif;
+    text-align: center;
   }
-
-  /*#custom-button:hover {*/
-  /*  background-color: #00b28f;*/
-  /*}*/
-
-  /*#custom-text {*/
-  /*  margin-left: 10px;*/
-  /*  font-family: sans-serif;*/
-  /*  color: #aaa;*/
-  /*}*/
 
   #mapid {
     top: 0;

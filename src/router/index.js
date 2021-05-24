@@ -19,7 +19,7 @@ export default new Router({
       component: Map
     },
     {
-      path: '/AboutUs',
+      path: '/About',
       name: 'about-us',
       component: AboutUs
     },
