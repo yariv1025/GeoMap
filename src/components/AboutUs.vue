@@ -1,59 +1,113 @@
 <template>
-  <div>
-    <div class="about-section">
-      <h1>About Us Page</h1>
-      <p>Some text about who we are and what we do.</p>
-      <p>Resize the browser window to see that this page is responsive by the
-        way.</p>
-    </div>
+  <div id="app">
 
-    <h2 style="text-align:center">Our Team</h2>
-    <div class="row">
-      <div class="column">
-        <div class="card">
-          <img src="/w3images/team1.jpg" alt="Jane" style="width:100%">
-          <div class="container">
-            <h2>Jane Doe</h2>
-            <p class="title">CEO & Founder</p>
-            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-            <p>jane@example.com</p>
-            <p>
-              <button class="button">Contact</button>
-            </p>
-          </div>
-        </div>
+    <v-responsive class="overflow-y-auto"
+                  max-height="400">
+
+      <v-responsive min-height="50vh"
+                    transition="fade-transition">
+        <img src="/static/img/icons/YG.jpg"
+             width="300"
+             height="300">
+      </v-responsive>
+
+      <div class="pa-6 text-center">
+        <h2>Hey there <img
+          src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif"
+          width=50px>
+          I'm Yariv</h2>
       </div>
 
-      <div class="column">
-        <div class="card">
-          <img src="/w3images/team2.jpg" alt="Mike" style="width:100%">
-          <div class="container">
-            <h2>Mike Ross</h2>
-            <p class="title">Art Director</p>
-            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-            <p>mike@example.com</p>
-            <p>
-              <button class="button">Contact</button>
-            </p>
-          </div>
-        </div>
-      </div>
+      <v-responsive height="150vh"
+                    class="text-center pa-2">
 
-      <div class="column">
-        <div class="card">
-          <img src="/w3images/team3.jpg" alt="John" style="width:100%">
-          <div class="container">
-            <h2>John Doe</h2>
-            <p class="title">Designer</p>
-            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-            <p>john@example.com</p>
-            <p>
-              <button class="button">Contact</button>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+        <v-lazy v-model="isActive"
+                :options="{threshold: .5}"
+                min-height="200"
+                transition="fade-transition">
+
+          <v-card class="mx-auto"
+                  max-width="336">
+
+            <v-card-text>
+
+              <h5>📚 A Bachelors Degree in Software Engineer, based in
+                Azrikam(Ashdod), Israel.</h5>
+
+              <div>
+                <p> 🌱‍ This project was created duo the goal of exploring and
+                  deepening the world of geo-mapping.</p>
+
+                <p>While writing the project I was exposed to a new world of
+                  geographic systems (GIS), got to know and learn about the
+                  existing
+                  geographic information systems on the web (WebGIS) and got
+                  to
+                  know
+                  new and interesting development environments such as Vue,
+                  Vuetify,
+                  Bootstrap and more.</p>
+
+                <p>
+                  <br>
+                  I used different libraries and services between them the Leaflet library,
+                  which allows to embed the map on the website and add various
+                  components to it, such as an editing menu (by Geoman), zoom,
+                  measuring and more.
+                </p>
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-lazy>
+
+        <v-responsive height="20vh"
+                      class="text-center pa-2">
+          <v-lazy v-model="isActive"
+                  :options="{threshold: .5}"
+                  min-height="20"
+                  transition="fade-transition">
+            <div class="row">
+              <div class="column order-0">
+                <img src="/static/img/icons/leaflet.jpg"
+                     width="200"
+                     height="50">
+              </div>
+
+              <div class="column order-1">
+                <img src="/static/img/icons/geoman.jpg"
+                     width="200"
+                     height="50">
+              </div>
+
+              <div class="column order-2">
+                <img src="/static/img/icons/OSM.jpg"
+                     width="200"
+                     height="50">
+              </div>
+
+              <div class="column order-3">
+                <img src="/static/img/icons/googlemaps.jpg"
+                     width="200"
+                     height="100">
+              </div>
+
+              <div class="column order-4">
+                <img src="/static/img/icons/mapbox.jpg"
+                     width="250"
+                     height="100">
+              </div>
+
+              <div class="column order-5">
+                <img src="/static/img/icons/arcgis.jpg"
+                     width="200"
+                     height="100">
+              </div>
+
+            </div>
+          </v-lazy>
+        </v-responsive>
+      </v-responsive>
+    </v-responsive>
   </div>
 </template>
 
@@ -61,9 +115,13 @@
   export default {
     name: 'aboutUs',
 
-    data() {
-      return {}
-    },
+    data: () => ({
+      isActive: false,
+    }),
+
+    // data() {
+    //   return {}
+    // },
 
   }
 </script>

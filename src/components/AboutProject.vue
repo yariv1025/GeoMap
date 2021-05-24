@@ -5,7 +5,7 @@
 
     <!-- The App Section -->
     <div class="p-3 mb-2 bg-white text-black">
-      <div class="row" >
+      <div class="row">
 
         <div class="column-66">
           <h1 class="xlarge-font"><b>What is Geo-Mapping?</b></h1>
@@ -28,7 +28,8 @@
 
     <!-- Clarity Section -->
     <div class="container-expand-lg">
-      <div class="row" :style="{'background-image':'url(https://wallpapercave.com/wp/wp2742532.jpg'}">
+      <div class="row"
+           :style="{'background-image':'url(https://wallpapercave.com/wp/wp2742532.jpg'}">
 
         <div class="column-33">
           <img src="/static/img/icons/explorer3.jpg"
@@ -38,7 +39,8 @@
         </div>
 
         <div class="column-66">
-          <h1 class="xlarge-font" style="color:white"><b>{{AppName}}</b></h1>
+          <h1 class="xlarge-font" style="color:white"><b>{{AppName}}</b>
+          </h1>
           <span style="font-size:36px; color:white">Gao-map app is an
             Interactive Web
             Mapping system that's written in JavaScript & Vue. <br> A Web
@@ -48,7 +50,6 @@
             </span>
           <span class="border-bottom-0"></span>
         </div>
-
       </div>
     </div>
 
@@ -58,8 +59,9 @@
 
         <div class="column-66">
           <h1 class="xlarge-font"><b>The App</b></h1>
-          <h1 class="large-font" style="color:MediumSeaGreen;"><b>How it's made?</b></h1>
-            <span style="font-size:36px">I chose to work
+          <h1 class="large-font" style="color:MediumSeaGreen;"><b>How it's
+            made?</b></h1>
+          <span style="font-size:36px">I chose to work
             with Leaflet, an open source library written in JavaScript and
             designed to display maps on websites.
             The library is supported in various environments including mobile
@@ -68,7 +70,10 @@
             and OpenStreetMap (OSM).
             </span>
 
-          <button class="button" onclick="location.href = 'http://localhost:8080/#/maps';" >Take a look</button>
+          <button class="button"
+                  onclick="location.href = 'http://localhost:8080/#/maps';">Take
+            a look
+          </button>
         </div>
 
 
