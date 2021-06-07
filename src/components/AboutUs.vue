@@ -50,7 +50,8 @@
 
                 <p>
                   <br>
-                  I used different libraries and services between them the Leaflet library,
+                  I used different libraries and services between them the
+                  Leaflet library,
                   which allows to embed the map on the website and add various
                   components to it, such as an editing menu (by Geoman), zoom,
                   measuring and more.

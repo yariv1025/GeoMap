@@ -1,47 +1,35 @@
 <template>
   <div class="hero">
-    <div class="row"
-         :style="{'background-image':'url(https://st2.depositphotos.com/4559651/6824/v/950/depositphotos_68247887-stock-illustration-seamless-city-map-pattern.jpg'}">
+    <div class="row">
 
       <div class="col-sm">
+        <!--        <JSONDialog :show="true"/>-->
+<!--        <div id="marker">-->
+<!--          <label for="lng-lnt"></label>-->
+<!--          <input type="text"-->
+<!--                 name="lng-lnt"-->
+<!--                 id="lng-lnt"-->
+<!--                 ref="marker"-->
+<!--                 placeholder="[[Latitude,Longitude]]" required>-->
 
-        <div class="row">
-          <!--          Upload file-->
-          <input type="file" id="real-file" hidden="hidden"/>
-          <span id="custom-text"><h4> --Please choose JSON file:</h4></span>
-          <button type="button" id="custom-button" v-on:click="loadJSONFile">
-            Upload JSON file
-          </button>
-        </div>
-
-        <div class="row">
-          <div id="marker">
-            <input type="text"
-                   name="lng-lnt"
-                   id="lng-lnt"
-                   ref="marker"
-                   placeholder="[[Latitude,Longitude]]" required>
-
-            <div class="my-cta-button"
-                 type="submit"
-                 value="Send"
-                 v-on:click="addMarker">
-              Upload markers
-            </div>
-          </div>
-
-        </div>
+<!--          <div class="my-cta-button"-->
+<!--               type="submit"-->
+<!--               value="Send"-->
+<!--               v-on:click="addMarker()">-->
+<!--            Upload markers-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
-
-      <div class="col-sm">
-        <v-container class="d-flex justify-center mb-6" flat tile>
-          <div id="mapid" class="d-flex justify-center mb-6"
-               style="height: 600px; width: 4000px;">
-          </div>
-        </v-container>
-      </div>
-
     </div>
+
+    <div id="mapid" class="col-sm">
+      <v-container class="d-flex justify-center mb-6" flat tile>
+        <div class="d-flex justify-center mb-6"
+             style="height: 600px; width: 4000px;">
+        </div>
+      </v-container>
+    </div>
+
   </div>
 </template>
 
@@ -52,18 +40,24 @@
   import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css'
   import 'leaflet-measure'
   import {GeoSearchControl, OpenStreetMapProvider} from 'leaflet-geosearch'
-  import {LMarker} from "vue2-leaflet";
+  import {LMarker} from "vue2-leaflet"
+  // import JSONDialog from "./JSONDialog"
 
   export default {
     name: 'maps',
 
     data() {
-      return {}
+      return {
+        markerLatLng:[]
+      }
     },
 
     components: {
-      'l-marker': LMarker
+      'l-marker': LMarker,
+      // 'JSONDialog': JSONDialog
     },
+
+    props: [],
 
     mounted() {
       this.initMap()
@@ -86,9 +80,6 @@
 
       // load maps
       loadMaps(mymap) {
-        // source: https://gis.stackexchange.com/questions/20191/adding-basemaps-from-google-or-bing-in-qgis/217670#217670
-        // source: https://leaflet-extras.github.io/leaflet-providers/preview/
-
         // definition of all the maps
         let streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           id: 'mapid',
@@ -208,7 +199,6 @@
       },
 
       // distance measurement
-      // source: https://github.com/ljagis/leaflet-measure
       distanceMeasurement(mymap) {
 
         let measureControl = L.control.measure({
@@ -275,61 +265,19 @@
       // adds specific marker to our map
       addMarker(mymap) {
         let markers = this.$refs.marker.value
-        console.log(markers)
-        markers = JSON.parse(markers)
-        console.log(markers)
-
         if (!markers) {
-          console.log(`markers list is: ${markers}`)
+          console.log(`Coordinates were not found!`)
         } else {
+          markers = JSON.parse(markers)
+          console.log(markers)
+
           markers.forEach((marker, index) => {
+            // L.marker(marker).addTo(mymap)
             L.marker(marker).addTo(mymap)
-            console.log(`A new marker added: ${marker}`);
+            console.log(`A new marker added: ${marker}`)
           })
         }
-      },
-
-      //load JSON file functions
-      loadJSONFile(mymap) {
-        const realFileBtn = document.getElementById("real-file")
-        const customBtn = document.getElementById("custom-button")
-        const customTxt = document.getElementById("custom-text")
-
-        customBtn.addEventListener("click", function () {
-          realFileBtn.click()
-        })
-
-        realFileBtn.addEventListener("change", function () {
-          if (realFileBtn.value) {
-            customTxt.innerHTML = realFileBtn.value.match(
-              /[\/\\]([\w\d\s\.\-\(\)]+)$/)[1]
-          } else {
-            customTxt.innerHTML = "No file chosen, yet."
-          }
-        })
-
-        // As with JSON, use the Fetch API & ES6
-        fetch(customTxt.value)
-          .then(response => response.text())
-          .then(data => {
-            //TODO: Insert the JSON data into my map
-            console.log(data);
-          })
-
-      },
-
-      // getStatesData() {
-      //   return () => {
-      //     fetch('http://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v0002/?gameid=221380')
-      //       .then(function (response) {
-      //         return response.json();
-      //       })
-      //       .then(function (myJson) {
-      //         console.log(JSON.stringify(myJson));
-      //       })
-      //   }
-      // },
-
+      }
     }
   }
 
@@ -371,10 +319,11 @@
   }
 
   #mapid {
-    top: 0;
+    position: absolute;
+    top: 55px;
     bottom: 0;
     width: 100%;
-    height: 100%;
+    height: 92%;
   }
 
 </style>
